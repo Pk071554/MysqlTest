@@ -105,19 +105,21 @@ create table Permission(
 
 ------------------------------Entity9---------------------------------------
 create table Entity9(
-            Permission_ID  int  primary key not null,                           --------权限ID
-            Rolel_ID       int  primary key not null,                           --------角色ID
+            Permission_ID  int              not null,                           --------权限ID
+            Rolel_ID       int              not null,                           --------角色ID
             foreign key(Permission_ID) references Permission(Permission_ID),    --------外联
             foreign key(Rolel_ID)      references Roleld(Rolel_ID)              --------外联
+            primary key(Permission_ID,Rolel_ID)
 );
          insert into Entity7 values(1,1)
          insert into Entity7 values(2,2)
 ------------------------------Entity7---------------------------------------
 create table Entity9(
-            User_ID               int  primary key not null,                    --------用户ID
-            Roleld_ID             int  primary key not null,                    --------角色ID
+            User_ID               int   not null,                               --------用户ID
+            Roleld_ID             int   not null,                               --------角色ID
             foreign key(User_ID)  references User(User_ID),                     --------外联
-            foreign key(Rolel_ID) references Roleld(Rolel_ID)                   --------外联
+            foreign key(Rolel_ID) references Roleld(Rolel_ID),                   --------外联
+            primary key(User_ID,Roleld_ID)
 );
   insert into Entity9 values(1,1)
   insert into Entity9 values(2,2)
