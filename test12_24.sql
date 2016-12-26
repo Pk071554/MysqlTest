@@ -4,7 +4,7 @@ create database  myBBS;
 create table Board(
                 Board_ID int primary key not null,                              -----论坛ID
                 Board_name            varchar(32),                              -----论坛名
-                Board_Time            datetime,                                 -----创建日期
+                Board_Time            timestamp,                                -----创建日期
                 Board_describe        varchar(32)                               -----描述
 );
 
@@ -14,7 +14,7 @@ insert into Board  values(2,'smoki',now(),'goodcool');
 create table Forum(
                 Forum_ID int primary key not null,                              -----论坛ID
                 Forum_name            varchar(32),                              -----论坛名
-                Forum_time            datetime,                                 -----创建日期
+                Forum_time            timestamp,                                -----创建日期
                 Board_ID              int,                                      -----BoardId
                 foreign key(Board_ID) references Board(Board_ID)                ----- 上层ID
 );
@@ -26,11 +26,11 @@ insert into Forum values(1,'smokigood',now(),1);
 create table Article(
                 Article_ID int primary key not null,                            -----帖子ID
                 Article_Theme         varchar(32),                              -----帖子名字
-                Article_Theme_time    datetime,                                 -----发帖时间
+                Article_Theme_time    timestamp,                                -----发帖时间
                 Article_views         int,                                      -----浏览次数
                 Article_content       varchar(1314),                            -----内容
                 UID                   int,                                      -----发帖用户ID
-                Article_LastReplyDate varchar(32),                              -----最后回复时间
+                Article_LastReplyDate timestamp,                                -----最后回复时间
                 Article_LastReplyUID  int,                                      -----最后回复用户
                 Forum_ID              int,                                      -----版页ID
                 foreign key(Forum_ID) references Forum(Forum_ID)                -----外联到Forum_IDID
@@ -48,7 +48,7 @@ create table Reply(
                Article_ID   int,                                                ----- 帖ID
                foreign key(Article_ID) references Article(Article_ID)           -----外联
 );
-             insert into Reply values(2014.7.19,'CCC','fXXKGOOD',1,2014.7.19,1);
+             insert into Reply values(now(),'CCC','fXXKGOOD',1,noew(),1);
              insert into Reply values(now(),'WWW','fXXKGOOD',2,now(),2);
 
 
@@ -60,7 +60,7 @@ create table  Moderator(
               foreign key(User_ID) references User(User_ID),                    -----外联
               foreign key(Forum_ID) references Forum(Forum_ID),                 -----外联
               Moderator_operUid   int,                                          -----版主ID
-              Moderator_operDate  datetime,                                     -----版主时间
+              Moderator_operDate  timestamp,                                    -----版主时间
               primary key(Forum_ID,User_ID)
  );
    insert into Moderator values(1,1,1,1,now());
@@ -80,7 +80,7 @@ create table UserDesc(
              UserDesc_Desci     varchar(32),                                    -----描述
              UserDesc_Name      varchar(32),                                    -----姓名
              UserDesc_Sex       varchar(8),                                     -----性别
-             UserDesc_Birthday  date,                                           -----生日
+             UserDesc_Birthday  varchar(12),                                    -----生日
              foreign key(User_ID) references User(User_ID)                      -----外联
            );
            insert into UserDesc values(1,'hejiu,chouyan','beeri','nan',now(),);
