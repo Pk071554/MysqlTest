@@ -55,12 +55,13 @@ create table Reply(
 ----------------------用户方面-------------------------
 ----------------------版主----------------------------
 create table  Moderator(
-               Forum_ID int   primary key,                                      -----板块ID
-               User_ID  int   primary key,                                      -----用户ID
+               Forum_ID int,                                                    -----板块ID
+               User_ID  int,                                                    -----用户ID
               foreign key(User_ID) references User(User_ID),                    -----外联
               foreign key(Forum_ID) references Forum(Forum_ID),                 -----外联
               Moderator_operUid   int,                                          -----版主ID
-              Moderator_operDate  datetime                                      -----版主时间
+              Moderator_operDate  datetime,                                     -----版主时间
+              primary key(Forum_ID,User_ID)
  );
    insert into Moderator values(1,1,1,1,now());
    insert into Moderator values(2,2,2,2,now());
@@ -71,8 +72,8 @@ create table  User(
               User_name varchar(16)     not null                                -----用户名
               User_password varchar(18) not null                                -----用户密码
 )
-insert into User values(1,'beeri',password);
-insert into User values(2,'smokij',password);
+insert into User values(1,'beeri','password');
+insert into User values(2,'smokij','password');
 ------------------------UserDesc---------------------------
 create table UserDesc(
              User_ID   int   primary key,                                       -----用户ID
