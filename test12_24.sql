@@ -48,7 +48,7 @@ create table Reply(
                Article_ID   int,                                                ----- 帖ID
                foreign key(Article_ID) references Article(Article_ID)           -----外联
 );
-             insert into Reply values(now(),'CCC','fXXKGOOD',1,now(),1);
+             insert into Reply values(2014.7.19,'CCC','fXXKGOOD',1,2014.7.19,1);
              insert into Reply values(now(),'WWW','fXXKGOOD',2,now(),2);
 
 
@@ -108,7 +108,7 @@ create table Entity9(
             Permission_ID  int              not null,                           --------权限ID
             Rolel_ID       int              not null,                           --------角色ID
             foreign key(Permission_ID) references Permission(Permission_ID),    --------外联
-            foreign key(Rolel_ID)      references Roleld(Rolel_ID)              --------外联
+            foreign key(Rolel_ID)      references Roleld(Rolel_ID),             --------外联
             primary key(Permission_ID,Rolel_ID)
 );
          insert into Entity7 values(1,1)
