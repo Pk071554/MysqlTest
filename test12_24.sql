@@ -40,7 +40,7 @@ create table Article(
 
 ----------------------Reply-------------------------
 create table Reply(
-               ReplyDate    date primary key not null,                          ----- 回帖时间
+               ReplyDate    timestamp primary key not null,                     ----- 回帖时间
                Content      varchar(520),                                       ----- 回复内容
                Title        varchar(32),                                        ----- 标题
                UID          int,                                                ----- 用户ID
@@ -80,11 +80,11 @@ create table UserDesc(
              UserDesc_Desci     varchar(32),                                    -----描述
              UserDesc_Name      varchar(32),                                    -----姓名
              UserDesc_Sex       varchar(8),                                     -----性别
-             UserDesc_Birthday  varchar(12),                                    -----生日
+             UserDesc_Birthday  date,                                           -----生日
              foreign key(User_ID) references User(User_ID)                      -----外联
            );
-           insert into UserDesc values(1,'hejiu,chouyan','beeri','nan',now(),);
-           insert into UserDesc values(2,'hejiu,chouyan','smokij','nan',now(),);
+           insert into UserDesc values(1,'hejiu,chouyan','beeri','nan',null);
+           insert into UserDesc values(2,'hejiu,chouyan','smokij','nan',null);
 
 -------------------------角色表RolelD---------------------------
 create table Roleld(
