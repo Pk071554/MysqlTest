@@ -1,4 +1,4 @@
-doap
+drop   myBBS;
 create database  myBBS;
   use myBBS;
 -- ------------------------- Board论坛版------------------------------ 
