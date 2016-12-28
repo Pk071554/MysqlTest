@@ -1,4 +1,4 @@
-drop   myBBS;
+﻿drop   myBBS;
 create database  myBBS;
   use myBBS;
 -- ------------------------- Board论坛版------------------------------ 
@@ -54,6 +54,16 @@ create table Reply(
 
 
 -- -------------------- 用户方面-------------------------
+
+-- -------------------- 用户User表---------------------------
+create table  User(
+              User_ID   int primary key not null,                                -- --- 用户ID
+              User_name varchar(16)     not null,                                -- --- 用户名
+              User_password varchar(18) not null                                 -- --- 用户密码
+);
+insert into User values(1,'beeri','password');
+insert into User values(2,'smokij','password');
+
 -- -------------------- 版主----------------------------
 create table  Moderator(
                Forum_ID int,                                                    -- --- 板块ID
@@ -67,14 +77,6 @@ create table  Moderator(
    insert into Moderator values(1,1,1,1,now());
    insert into Moderator values(2,2,2,2,now());
 
----------------------- 用户User表---------------------------
-create table  User(
-              User_ID   int primary key not null                                ----- 用户ID
-              User_name varchar(16)     not null                                ----- 用户名
-              User_password varchar(18) not null                                ----- 用户密码
-)
-insert into User values(1,'beeri','password');
-insert into User values(2,'smokij','password');
 -- ---------------------- UserDesc---------------------------
 create table UserDesc(
              User_ID   int   primary key,                                       -- --- 用户ID
@@ -87,18 +89,18 @@ create table UserDesc(
            insert into UserDesc values(1,'hejiu,chouyan','beeri','nan',null);
            insert into UserDesc values(2,'hejiu,chouyan','smokij','nan',null);
 
-------------------------- 角色表Role---------------------------
+-- ----------------------- 角色表Role---------------------------
 create table Role(
-             Role_ID  int primary key not null,                                 ----- 角色ID
-             Role_name varchar(16)                                              ----- 角色名
+             Role_ID  int primary key not null,                                 -- --- 角色ID
+             Role_name varchar(16)                                              -- --- 角色名
 );
         insert into  Role values(1,'BOSS');
         insert into  Role values(2,'BOSS');
 
------------------------------ 权限表Permission---------------------------------
+-- --------------------------- 权限表Permission---------------------------------
 create table Permission(
-             Permission_ID int primary key not null,                            ----- 权限ID
-             PermissionName     varchar(32)                                     ----- 权限名字
+             Permission_ID int primary key not null,                            -- --- 权限ID
+             PermissionName     varchar(32)                                     -- --- 权限名字
            );
            insert into  Permission values(1,'BIGBOSS');
            insert into  Permission values(2,'BIGBOSS');
@@ -109,18 +111,18 @@ create table Entity9(
             Permission_ID  int              not null,                           -- ------ 权限ID
             Role_ID       int               not null,                           -- ------ 角色ID
             foreign key(Permission_ID) references Permission(Permission_ID),    -- ------ 外联
-            foreign key(Role_ID)      references Role(Role_ID),              -- ------ 外联
+            foreign key(Role_ID)      references Role(Role_ID),                 -- ------ 外联
             primary key(Permission_ID,Role_ID)
 );
          insert into Entity9 values(1,1)
          insert into Entity9 values(2,2)
 -- ---------------------------- Entity7---------------------------------------
-create table Entity9(
+create table Entity7(
             User_ID               int   not null,                               -- ------ 用户ID
             Role_ID               int   not null,                               -- ------ 角色ID
             foreign key(User_ID)  references User(User_ID),                     -- ------ 外联
             foreign key(Role_ID) references Role(Role_ID),                      -- ------ 外联
             primary key(User_ID,Role_ID)
 );
-  insert into Entity9 values(1,1)
-  insert into Entity9 values(2,2)
+  insert into Entity7 values(1,1)
+  insert into Entity7 values(2,2)
